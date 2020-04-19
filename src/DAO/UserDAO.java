@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/casestudy?useSLL=false";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/casestudy";
     private String jdbcUserName = "phong";
     private String jdbcPassWord ="123456";
 
     private static final String INSERT_USER_SQL = "INSERT INTO users" + "(name, email, country) VALUE "+"(?, ?, ?);";
 
     private static final String SELECT_USER_BY_ID ="select id, name, email, country from users where id =?";
-    private static final String SELECT_ALL_USERS = "select*from users";
+    private static final String SELECT_ALL_USERS = "select * from users";
     private static final String DELETE_USERS_SQL = "delete from users where id =?;";
     private static final String UPDATE_USERS_SQL ="update users set name = ?,email = ?, country =? where id = ?;";
     public UserDAO(){
@@ -46,7 +46,7 @@ public class UserDAO {
             printSQLException(e);
         }
     }
-    public User seclectUser(int id) throws SQLException {
+    public User selectUser(int id) throws SQLException {
         User user = null;
         try(Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);){
@@ -123,4 +123,5 @@ public class UserDAO {
             }
         }
     }
+
 }

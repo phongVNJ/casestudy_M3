@@ -12,13 +12,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/")
+@WebServlet(name = "UserServlet", urlPatterns = "/")
 public class UserServlet extends javax.servlet.http.HttpServlet {
     private static final long serialVersionIUD = 1L;
-    private UserDAO userDAO;
-    public void unit(){
+    private UserDAO userDAO = new UserDAO();
+    public void init(){
         userDAO = new UserDAO();
     }
+
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         doGet(request,response);
 
@@ -66,7 +67,7 @@ public class UserServlet extends javax.servlet.http.HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
     int id = Integer.parseInt(request.getParameter("id"));
-    User existingUser = userDAO.seclectUser(id);
+    User existingUser = userDAO.selectUser(id);
     RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
     request.setAttribute("user",existingUser);
     dispatcher.forward(request,response);

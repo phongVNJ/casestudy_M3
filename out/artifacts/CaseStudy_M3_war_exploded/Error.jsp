@@ -13,7 +13,7 @@
 <body>
 <center>
     <h1>Error</h1>
-    <h2><%=exception.getMessenge()%><br/></h2>
+    <h2><br/></h2>
 </center>
 
 </body>
